@@ -8,9 +8,9 @@ services:
     volumes:
       - './sya:/app/sya'
     ports:
-        - 8080:8080
+        - 3333:3333
     command:
-        npm start
+        yarn dev:server
     environment:
         - DEBUG=sya:*
         - PORT=8080
