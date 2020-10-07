@@ -24,6 +24,16 @@ class User {
   @Column({
     length: 100,
   })
+  cpf: string;
+
+  @Column({
+    length: 100,
+  })
+  operating_day: string;
+
+  @Column({
+    length: 100,
+  })
   password: string;
 
   @Column({
@@ -38,6 +48,16 @@ class User {
     length: 100,
   })
   business_name: string;
+
+  @Column({
+    length: 100,
+  })
+  initial_hour: string;
+
+  @Column({
+    length: 100,
+  })
+  finish_hour: string;
 
   @CreateDateColumn()
   created_at: Date;
