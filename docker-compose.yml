@@ -10,13 +10,14 @@ services:
     ports:
         - 3333:3333
     command:
-        yarn dev:server
+        yarn dev:server 
     environment:
         - DEBUG=sya:*
         - PORT=8080
 
   db:
     image: postgres
+    command: yarn typeorm migration:run
     volumes:
       - ./database/scripts:/docker-entrypoint-initdb.d
     #- ./database/postgresql/data:/var/lib/postgresql/data
