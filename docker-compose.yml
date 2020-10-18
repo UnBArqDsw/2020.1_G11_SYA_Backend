@@ -17,7 +17,6 @@ services:
 
   db:
     image: postgres
-    command: yarn typeorm migration:run
     volumes:
       - ./database/scripts:/docker-entrypoint-initdb.d
     #- ./database/postgresql/data:/var/lib/postgresql/data
