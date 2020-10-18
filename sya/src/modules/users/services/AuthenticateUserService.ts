@@ -22,8 +22,8 @@ class AuthenticateUserService {
     @inject('UserRepository')
     private usersRepository: IUserRepository,
 
-    @inject('BCryptHashProvider')
-    private bcryptHashProvider: IHashProvider
+    @inject('HashProvider')
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -32,7 +32,7 @@ class AuthenticateUserService {
     if (!user) {
       throw new AppError('Incorrect email/password combination', 401);
     }
-    const passwordMatched = await this.bcryptHashProvider.compareHash(
+    const passwordMatched = await this.hashProvider.compareHash(
       password,
       user.password
     );

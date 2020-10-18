@@ -52,12 +52,12 @@ class User {
   @Column({
     length: 100,
   })
-  initial_hour: string;
+  initial_hour: Date;
 
   @Column({
     length: 100,
   })
-  finish_hour: string;
+  finish_hour: Date;
 
   @CreateDateColumn()
   created_at: Date;

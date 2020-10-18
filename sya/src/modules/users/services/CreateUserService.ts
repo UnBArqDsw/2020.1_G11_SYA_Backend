@@ -11,8 +11,8 @@ class CreateUserService {
     @inject('UserRepository')
     private usersRepository: IUserRepository,
 
-    @inject('BCryptHashProvider')
-    private bcryptHashProvider: IHashProvider
+    @inject('HashProvider')
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute({
@@ -32,7 +32,7 @@ class CreateUserService {
       throw new AppError('Email adress already used.');
     }
 
-    const hashedPassword = await this.bcryptHashProvider.generateHash(password);
+    const hashedPassword = await this.hashProvider.generateHash(password);
 
     const user = await this.usersRepository.create({
       name,
