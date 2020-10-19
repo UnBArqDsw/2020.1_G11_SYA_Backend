@@ -26,10 +26,21 @@ class CreateUserService {
     operating_day,
     password,
   }: ICreateUserDTO): Promise<User> {
-    const checkUserExists = await this.usersRepository.findByEmail(email);
+    const checkUserEmail = await this.usersRepository.findByEmail(email);
+    const checkUserCPF = await this.usersRepository.findByCPF(cpf);
+    const checkCPF = this.usersRepository.checkCPF(cpf)
 
-    if (checkUserExists) {
+    if (checkUserEmail) {
       throw new AppError('Email adress already used.');
+    }
+    if (checkUserCPF) {
+      throw new AppError('CPF already used');
+    }
+    if (!checkCPF) {
+      throw new AppError('Invalid CPF')
+    }
+    if (finish_hour == initial_hour) {
+      throw new AppError('Initial hour equal finish hour')
     }
 
     const hashedPassword = await this.bcryptHashProvider.generateHash(password);
