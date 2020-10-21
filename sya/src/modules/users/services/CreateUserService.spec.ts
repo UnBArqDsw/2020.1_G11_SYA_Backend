@@ -21,8 +21,8 @@ describe('CreateUser', () => {
       password: '123456',
       business_area: 'agronegocio',
       business_name: 'Indião Sementes - Produtos Agropecuários',
-      cpf: '01001001010',
-      initial_hour: new Date(2020, 5, 1),
+      cpf: '12345678909',
+      initial_hour: new Date(2020, 5, 2),
       finish_hour: new Date(2020, 5, 1),
       operating_day: 'S-T-Q-Q',
     });
@@ -37,8 +37,8 @@ describe('CreateUser', () => {
       password: '123456',
       business_area: 'agronegocio',
       business_name: 'Indião Sementes - Produtos Agropecuários',
-      cpf: '01001001010',
-      initial_hour: new Date(2020, 5, 1),
+      cpf: '12345678909',
+      initial_hour: new Date(2020, 5, 2),
       finish_hour: new Date(2020, 5, 1),
       operating_day: 'S-T-Q-Q',
     });
@@ -50,7 +50,69 @@ describe('CreateUser', () => {
         password: '123456',
         business_area: 'agronegocio',
         business_name: 'Indião Sementes - Produtos Agropecuários',
-        cpf: '01001001010',
+        cpf: '05698556164',
+        initial_hour: new Date(2020, 5, 2),
+        finish_hour: new Date(2020, 5, 1),
+        operating_day: 'S-T-Q-Q',
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a new user with same cpf from another', async () => {
+    await createUser.execute({
+      name: 'Indião',
+      email: 'indio@example.com',
+      password: '123456',
+      business_area: 'agronegocio',
+      business_name: 'Indião Sementes - Produtos Agropecuários',
+      cpf: '12345678909',
+      initial_hour: new Date(2020, 5, 2),
+      finish_hour: new Date(2020, 5, 1),
+      operating_day: 'S-T-Q-Q',
+    });
+
+    await expect(
+      createUser.execute({
+        name: 'Indião',
+        email: 'indiao@example.com',
+        password: '123456',
+        business_area: 'agronegocio',
+        business_name: 'Indião Sementes - Produtos Agropecuários',
+        cpf: '12345678909',
+        initial_hour: new Date(2020, 5, 2),
+        finish_hour: new Date(2020, 5, 1),
+        operating_day: 'S-T-Q-Q',
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a new user with same initial hour and finish hour', async () => {
+    const hour = new Date(2020, 5, 1);
+
+    await expect(
+      createUser.execute({
+        name: 'Indião',
+        email: 'indio@example.com',
+        password: '123456',
+        business_area: 'agronegocio',
+        business_name: 'Indião Sementes - Produtos Agropecuários',
+        cpf: '12345678909',
+        initial_hour: hour,
+        finish_hour: hour,
+        operating_day: 'S-T-Q-Q',
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a new user with invalid CPF', async () => {
+    await expect(
+      createUser.execute({
+        name: 'Indião',
+        email: 'indio@example.com',
+        password: '123456',
+        business_area: 'agronegocio',
+        business_name: 'Indião Sementes - Produtos Agropecuários',
+        cpf: '12345678900',
         initial_hour: new Date(2020, 5, 1),
         finish_hour: new Date(2020, 5, 1),
         operating_day: 'S-T-Q-Q',
@@ -60,5 +122,4 @@ describe('CreateUser', () => {
 });
 
 // verificar se o cpf é valido
-// verificar se existe um usuário com o mesmo cpf
 // verificar se a initial hora é igual a finish hour
