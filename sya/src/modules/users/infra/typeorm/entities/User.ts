@@ -49,14 +49,10 @@ class User {
   })
   business_name: string;
 
-  @Column({
-    length: 100,
-  })
+  @Column()
   initial_hour: Date;
 
-  @Column({
-    length: 100,
-  })
+  @Column()
   finish_hour: Date;
 
   @CreateDateColumn()
