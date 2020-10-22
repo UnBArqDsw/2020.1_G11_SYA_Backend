@@ -1,3 +1,4 @@
+import User from '@modules/users/infra/typeorm/entities/User';
 import {
   Entity,
   Column,
@@ -9,7 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity('employees')
-class User {
+class Employee {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -32,4 +33,4 @@ class User {
   user: User;
 }
 
-export default User;
+export default Employee;
