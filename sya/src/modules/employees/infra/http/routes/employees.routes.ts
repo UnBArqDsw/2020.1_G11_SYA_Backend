@@ -18,4 +18,6 @@ employeeRouter.post(
   employeeController.create
 );
 
+employeeRouter.get('/', employeeController.show);
+
 export default employeeRouter;

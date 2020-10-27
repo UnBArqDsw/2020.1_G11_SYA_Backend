@@ -4,5 +4,5 @@ import ICreateEmployeeDTO from '@modules/employees/dtos/ICreateEmployeeDTO';
 export default interface IEmployeeRepository {
   findById(id: string): Promise<Employee | undefined>;
   create(EmployeeData: ICreateEmployeeDTO): Promise<Employee>;
-  findByUserId(id: string): Promise<Employee[] | undefined>;
+  findAllEmployess(user_id: string): Promise<Employee[]>;
 }

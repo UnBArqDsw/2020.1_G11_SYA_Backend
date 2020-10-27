@@ -21,8 +21,7 @@ class EmployeeRepository implements IEmployeeRepository {
     return employee;
   }
 
-  public findByUserId(id: string): Promise<Employee[] | undefined> {
-    const user_id = id;
+  public findAllEmployess(user_id: string): Promise<Employee[]> {
     const findEmployees = this.ormRepository.find({ where: { user_id } });
     return findEmployees;
   }
