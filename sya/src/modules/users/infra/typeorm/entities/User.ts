@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Exclude } from 'class-transformer';
+
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')
@@ -31,9 +33,11 @@ class User {
   })
   operating_day: string;
 
+
   @Column({
     length: 100,
   })
+  @Exclude()
   password: string;
 
   @Column({
@@ -49,14 +53,10 @@ class User {
   })
   business_name: string;
 
-  @Column({
-    length: 100,
-  })
+  @Column()
   initial_hour: Date;
 
-  @Column({
-    length: 100,
-  })
+  @Column()
   finish_hour: Date;
 
   @CreateDateColumn()
