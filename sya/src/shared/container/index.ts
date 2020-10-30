@@ -8,6 +8,7 @@ import EmployeeRepository from '@modules/employees/infra/typeorm/repositories/Em
 import IEmployeeRepository from '@modules/employees/repositories/IEmployeeRepository';
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
+
 container.registerSingleton<IEmployeeRepository>(
   'EmployeeRepository',
   EmployeeRepository
