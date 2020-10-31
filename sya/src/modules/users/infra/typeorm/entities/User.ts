@@ -33,7 +33,6 @@ class User {
   })
   operating_day: string;
 
-
   @Column({
     length: 100,
   })

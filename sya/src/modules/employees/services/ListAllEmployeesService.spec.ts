@@ -6,8 +6,8 @@ import CreateEmployeeService from '@modules/employees/services/CreateEmployeeSer
 import CreateUserService from '@modules/users/services/CreateUserService';
 import AppError from '@shared/errors/AppError';
 
-let fakeEmployeeRepository: FakeEmployeeRepository
-let listAllEmployees: ListAllEmployeesService
+let fakeEmployeeRepository: FakeEmployeeRepository;
+let listAllEmployees: ListAllEmployeesService;
 let fakeUserRepository: FakeUserRepository;
 let createEmployee: CreateEmployeeService;
 let fakeHashProvider: FakeHashProvider;
@@ -22,7 +22,10 @@ describe('CreateEmployee', () => {
 
     listAllEmployees = new ListAllEmployeesService(fakeEmployeeRepository);
     createUser = new CreateUserService(fakeUserRepository, fakeHashProvider);
-    createEmployee = new CreateEmployeeService(fakeEmployeeRepository, fakeUserRepository);
+    createEmployee = new CreateEmployeeService(
+      fakeEmployeeRepository,
+      fakeUserRepository
+    );
   });
   it('should be able to list only one employee', async () => {
     const user = await createUser.execute({
@@ -39,15 +42,15 @@ describe('CreateEmployee', () => {
 
     const employee = await createEmployee.execute({
       name: 'Pedrão Sacola',
-      user_id: user.id
+      user_id: user.id,
     });
 
     const allEmployees = await listAllEmployees.execute({
-      user_id: user.id
+      user_id: user.id,
     });
 
-    expect(allEmployees).toHaveLength(1)
-    expect(allEmployees).toContain(employee)
+    expect(allEmployees).toHaveLength(1);
+    expect(allEmployees).toContain(employee);
   });
 
   it('should be able to list more then one employee', async () => {
@@ -65,27 +68,27 @@ describe('CreateEmployee', () => {
 
     const employee_1 = await createEmployee.execute({
       name: 'Pedrão Sacola',
-      user_id: user.id
+      user_id: user.id,
     });
 
     const employee_2 = await createEmployee.execute({
       name: 'Indião',
-      user_id: user.id
+      user_id: user.id,
     });
 
     const employee_3 = await createEmployee.execute({
       name: 'Dani boy',
-      user_id: user.id
+      user_id: user.id,
     });
 
     const allEmployees = await listAllEmployees.execute({
-      user_id: user.id
+      user_id: user.id,
     });
 
-    expect(allEmployees).toHaveLength(3)
-    expect(allEmployees).toContain(employee_1)
-    expect(allEmployees).toContain(employee_2)
-    expect(allEmployees).toContain(employee_3)
+    expect(allEmployees).toHaveLength(3);
+    expect(allEmployees).toContain(employee_1);
+    expect(allEmployees).toContain(employee_2);
+    expect(allEmployees).toContain(employee_3);
   });
 
   it('should be able to list only zero employees', async () => {
@@ -102,9 +105,9 @@ describe('CreateEmployee', () => {
     });
 
     const allEmployees = await listAllEmployees.execute({
-      user_id: user.id
+      user_id: user.id,
     });
 
-    expect(allEmployees).toHaveLength(0)
+    expect(allEmployees).toHaveLength(0);
   });
 });

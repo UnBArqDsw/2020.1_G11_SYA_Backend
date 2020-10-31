@@ -5,7 +5,7 @@ import CreateEmployeeService from '@modules/employees/services/CreateEmployeeSer
 import CreateUserService from '@modules/users/services/CreateUserService';
 import AppError from '@shared/errors/AppError';
 
-let fakeEmployeeRepository: FakeEmployeeRepository
+let fakeEmployeeRepository: FakeEmployeeRepository;
 let fakeUserRepository: FakeUserRepository;
 let createEmployee: CreateEmployeeService;
 let fakeHashProvider: FakeHashProvider;
@@ -18,7 +18,10 @@ describe('CreateEmployee', () => {
     fakeHashProvider = new FakeHashProvider();
 
     createUser = new CreateUserService(fakeUserRepository, fakeHashProvider);
-    createEmployee = new CreateEmployeeService(fakeEmployeeRepository, fakeUserRepository);
+    createEmployee = new CreateEmployeeService(
+      fakeEmployeeRepository,
+      fakeUserRepository
+    );
   });
   it('should be able to create a new employee using an axistent user', async () => {
     const user = await createUser.execute({
@@ -35,7 +38,7 @@ describe('CreateEmployee', () => {
 
     const employee = await createEmployee.execute({
       name: 'Pedrão Sacola',
-      user_id: user.id
+      user_id: user.id,
     });
 
     expect(employee).toHaveProperty('id');
@@ -45,7 +48,7 @@ describe('CreateEmployee', () => {
     await expect(
       createEmployee.execute({
         name: 'Pedrão Sacola',
-        user_id: '1'
+        user_id: '1',
       })
     ).rejects.toBeInstanceOf(AppError);
   });

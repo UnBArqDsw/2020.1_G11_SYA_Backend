@@ -11,7 +11,7 @@ interface IRequest {
 class ListAllEmployeesService {
   constructor(
     @inject('EmployeeRepository')
-    private employeesRepository: IEmployeeRepository,
+    private employeesRepository: IEmployeeRepository
   ) {}
 
   public async execute({ user_id }: IRequest): Promise<Employee[]> {
