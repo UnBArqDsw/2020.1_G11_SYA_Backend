@@ -28,13 +28,13 @@ jobs:
         
       # Runs a single command using the runners shell
       - name: Run ESlint and Prettier
-        run:|
+        run: |
             cd sya
             yarn eslint
 
       # Runs a set of commands using the runners shell
       - name: Run tests
-        run:|
+        run: |
             cd sya
             yarn test
 
