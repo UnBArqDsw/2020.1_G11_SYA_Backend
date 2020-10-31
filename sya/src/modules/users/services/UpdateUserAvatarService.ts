@@ -16,7 +16,7 @@ class UpdateUserAvatarService {
   /* Passamos esse construtor pois o service não precisa ter noção se estamos utilizando
   typeorm */
   constructor(
-    @inject('UsersRepository')
+    @inject('UserRepository')
     private usersRepository: IUserRepository,
 
     @inject('StorageProvider')
