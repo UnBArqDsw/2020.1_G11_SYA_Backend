@@ -22,7 +22,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install dependences
-        run:|
+        run: |
             cd sya
             yarn install --production=false
         
