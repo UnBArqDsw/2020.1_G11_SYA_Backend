@@ -48,7 +48,7 @@ describe('AuthenticateUser', () => {
   });
 
   it('should not be able to autheticate user with wrong password', async () => {
-    const user = await fakeUserRepository.create({
+    await fakeUserRepository.create({
       name: 'Sacola',
       email: 'pedraosacola@gmail.com',
       password: 'sacola',

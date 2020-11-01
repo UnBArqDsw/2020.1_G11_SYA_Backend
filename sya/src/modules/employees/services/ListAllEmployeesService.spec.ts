@@ -4,7 +4,6 @@ import ListAllEmployeesService from '@modules/employees/services/ListAllEmployee
 import FakeUserRepository from '@modules/users/repositories/fakes/FakeUserRepository';
 import CreateEmployeeService from '@modules/employees/services/CreateEmployeeService';
 import CreateUserService from '@modules/users/services/CreateUserService';
-import AppError from '@shared/errors/AppError';
 
 let fakeEmployeeRepository: FakeEmployeeRepository;
 let listAllEmployees: ListAllEmployeesService;
