@@ -16,9 +16,7 @@ class Work {
   })
   name: string;
 
-  @Column({
-    length: 10,
-  })
+  @Column()
   price: number;
 
   @Column({
