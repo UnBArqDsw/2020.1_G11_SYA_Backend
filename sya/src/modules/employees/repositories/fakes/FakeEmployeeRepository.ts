@@ -21,9 +21,9 @@ class FakeEmployeeRepository implements IEmployeeRepository {
     return employee;
   }
 
-  public async findByUserId(id: string): Promise<Employee[] | undefined> {
+  public async findAllEmployess(user_id: string): Promise<Employee[]> {
     const findEmployees = this.employees.filter(
-      (employee) => employee.user_id === id
+      (employee) => employee.user_id === user_id
     );
     return findEmployees;
   }
