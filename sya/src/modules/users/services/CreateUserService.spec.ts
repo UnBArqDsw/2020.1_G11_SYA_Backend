@@ -168,7 +168,7 @@ describe('CreateUser', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should not be able to create a new user with only 0\'s CPF', async () => {
+  it("should not be able to create a new user with only 0's CPF", async () => {
     await expect(
       createUser.execute({
         name: 'Indião',
