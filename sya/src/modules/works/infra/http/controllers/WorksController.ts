@@ -6,6 +6,7 @@ import { classToClass } from 'class-transformer';
 export default class WorksController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, price, duration } = request.body;
+    const user_id = request.user.id;
 
     const createWork = container.resolve(CreateWorkService);
 
@@ -13,6 +14,7 @@ export default class WorksController {
       name,
       price,
       duration,
+      user_id,
     });
 
     return response.json(classToClass(work));

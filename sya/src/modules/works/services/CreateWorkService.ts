@@ -10,11 +10,17 @@ class CreateWorkService {
     private worksRepository: IWorkRepository
   ) {}
 
-  async execute({ name, price, duration }: ICreateWorkDTO): Promise<Work> {
+  async execute({
+    name,
+    price,
+    duration,
+    user_id,
+  }: ICreateWorkDTO): Promise<Work> {
     const work = await this.worksRepository.create({
       name,
       price,
       duration,
+      user_id,
     });
     return work;
   }

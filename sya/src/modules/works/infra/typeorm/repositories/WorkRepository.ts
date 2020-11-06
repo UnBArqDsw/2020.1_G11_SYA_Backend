@@ -20,6 +20,11 @@ class WorkRepository implements IWorkRepository {
     await this.ormRepository.save(work);
     return work;
   }
+
+  public findAllWorks(user_id: string): Promise<Work[]> {
+    const findWorks = this.ormRepository.find({ where: { user_id } });
+    return findWorks;
+  }
 }
 
 export default WorkRepository;

@@ -6,7 +6,8 @@ import ListAllEmployeesService from '@modules/employees/services/ListAllEmployee
 
 export default class EmployeesController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, user_id } = request.body;
+    const { name } = request.body;
+    const user_id = request.user.id;
 
     const createEmployee = container.resolve(CreateEmployeeService);
 
