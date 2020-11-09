@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 // eslint-disable-next-line import/prefer-default-export
-export class CreateEmployees1603319919264 implements MigrationInterface {
+export default class CreateWorks1604460337445 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'employees',
+        name: 'works',
         columns: [
           {
             name: 'id',
@@ -19,8 +19,12 @@ export class CreateEmployees1603319919264 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'user_id',
-            type: 'uuid',
+            name: 'price',
+            type: 'varchar',
+          },
+          {
+            name: 'duration',
+            type: 'varchar',
           },
           {
             name: 'created_at',
@@ -33,20 +37,11 @@ export class CreateEmployees1603319919264 implements MigrationInterface {
             default: 'now()',
           },
         ],
-        foreignKeys: [
-          {
-            name: 'EmployeeUser',
-            referencedTableName: 'users',
-            referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-        ],
       })
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('employees');
   }
