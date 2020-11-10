@@ -4,25 +4,27 @@ import { getRepository, Repository } from 'typeorm';
 import Employee from '../entities/Employee';
 
 class EmployeeRepository implements IEmployeeRepository {
-  private ormRepository: Repository<Employee>;
+  private ormEmployeeRepository: Repository<Employee>;
 
   constructor() {
-    this.ormRepository = getRepository(Employee);
+    this.ormEmployeeRepository = getRepository(Employee);
   }
 
   public findById(id: string): Promise<Employee | undefined> {
-    const findEmployee = this.ormRepository.findOne(id);
+    const findEmployee = this.ormEmployeeRepository.findOne(id);
     return findEmployee;
   }
 
   public async create(employeeData: ICreateEmployeeDTO): Promise<Employee> {
-    const employee = this.ormRepository.create(employeeData);
-    await this.ormRepository.save(employee);
+    const employee = this.ormEmployeeRepository.create(employeeData);
+    await this.ormEmployeeRepository.save(employee);
     return employee;
   }
 
   public findAllEmployess(user_id: string): Promise<Employee[]> {
-    const findEmployees = this.ormRepository.find({ where: { user_id } });
+    const findEmployees = this.ormEmployeeRepository.find({
+      where: { user_id },
+    });
     return findEmployees;
   }
 }
