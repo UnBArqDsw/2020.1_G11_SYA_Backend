@@ -19,4 +19,6 @@ workRouter.post(
   workController.create
 );
 
+workRouter.get('/', workController.get);
+
 export default workRouter;
