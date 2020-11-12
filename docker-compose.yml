@@ -14,6 +14,8 @@ services:
     environment:
         - DEBUG=sya:*
         - PORT=8080
+    depends_on: 
+      - db
 
   db:
     image: postgres
