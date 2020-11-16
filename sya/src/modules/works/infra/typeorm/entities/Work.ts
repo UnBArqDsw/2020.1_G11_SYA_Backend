@@ -1,3 +1,4 @@
+import Employee from '@modules/employees/infra/typeorm/entities/Employee';
 import User from '@modules/users/infra/typeorm/entities/User';
 import {
   Entity,
@@ -7,6 +8,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  ManyToMany,
 } from 'typeorm';
 
 @Entity('works')
@@ -29,6 +31,9 @@ class Work {
 
   @Column()
   user_id: string;
+
+  @ManyToMany(() => Employee, (employee) => employee.works)
+  employees: Employee[];
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })

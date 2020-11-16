@@ -1,4 +1,5 @@
 import User from '@modules/users/infra/typeorm/entities/User';
+import Work from '@modules/works/infra/typeorm/entities/Work';
 import {
   Entity,
   Column,
@@ -7,6 +8,8 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity('employees')
@@ -31,6 +34,10 @@ class Employee {
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @ManyToMany(() => Work, (work: { employees: any }) => work.employees)
+  @JoinTable()
+  works: Work[];
 }
 
 export default Employee;
