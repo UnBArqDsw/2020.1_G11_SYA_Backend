@@ -9,6 +9,8 @@ import EmployeeRepository from '@modules/employees/infra/typeorm/repositories/Em
 import IEmployeeRepository from '@modules/employees/repositories/IEmployeeRepository';
 import WorkRepository from '@modules/works/infra/typeorm/repositories/WorkRepository';
 import IWorkRepository from '@modules/works/repositories/IWorkRepository';
+import AppointmentRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentRepository';
+import IAppointmentRepository from '@modules/appointments/repositories/IAppointmentRepository';
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 
@@ -17,3 +19,7 @@ container.registerSingleton<IEmployeeRepository>(
   EmployeeRepository
 );
 container.registerSingleton<IWorkRepository>('WorkRepository', WorkRepository);
+container.registerSingleton<IAppointmentRepository>(
+  'AppointmentRepository',
+  AppointmentRepository
+);
