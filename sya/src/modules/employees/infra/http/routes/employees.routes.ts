@@ -11,8 +11,7 @@ employeeRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      name: Joi.string().required(),
-      user_id: Joi.string().required(),
+      name: Joi.string().required()
     },
   }),
   employeeController.create
