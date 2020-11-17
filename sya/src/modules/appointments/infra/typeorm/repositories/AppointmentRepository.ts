@@ -32,6 +32,11 @@ class AppointmentRepository implements IAppointmentRepository {
     await this.ormRepository.save(appointment);
     return appointment;
   }
+
+  public findByDate(date: Date,user_id: string): Promise<Appointment | undefined> {
+    const findAppointments = this.ormRepository.findOne({ where: { date, user_id } });
+    return findAppointments;
+  }
 }
 
 export default AppointmentRepository;

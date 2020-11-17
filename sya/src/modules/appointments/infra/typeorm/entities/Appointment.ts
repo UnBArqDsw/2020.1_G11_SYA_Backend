@@ -12,7 +12,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-@Entity('employees')
+@Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
   id: string;

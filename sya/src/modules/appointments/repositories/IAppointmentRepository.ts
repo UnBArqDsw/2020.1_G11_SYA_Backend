@@ -8,4 +8,5 @@ export default interface IAppointmentRepository {
     employee_id: string
   ): Promise<Appointment[]>;
   findByUserId(user_id: string): Promise<Appointment[]>;
+  findByDate(date: Date,user_id: string): Promise<Appointment | undefined>
 }
